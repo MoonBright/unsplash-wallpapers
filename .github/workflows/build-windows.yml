@@ -24,7 +24,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       
-      - name: Install dependencies (skip optional scripts)
+      - name: Install dependencies
         run: yarn install --ignore-scripts
       
       - name: Build
@@ -33,7 +33,7 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
       
       - name: Build Windows package
-        run: yarn package-win
+        run: yarn build && npx electron-builder build --win --x64 --publish never
         env:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
       
