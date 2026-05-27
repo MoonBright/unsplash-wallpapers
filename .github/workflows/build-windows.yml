@@ -21,19 +21,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
       
-      - name: Install node-gyp globally
-        run: npm install -g node-gyp
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       
       - name: Install dependencies
-        run: yarn install --ignore-scripts
-        env:
-          npm_config_build_from_source: true
-      
-      - name: Build node-sass
-        run: npm rebuild node-sass
+        run: yarn install
       
       - name: Build
         run: yarn build
